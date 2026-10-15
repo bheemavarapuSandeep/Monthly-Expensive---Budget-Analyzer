@@ -1,0 +1,954 @@
+/* 
+ * Monthly Expense & Budget Analyzer - Coastal Beach & Light Breeze Theme
+ * Theme: Warm Sand, Caribbean Aqua, Ocean Teal, Sunset Coral & Glassmorphism Card Effects
+ */
+
+:root {
+    /* Beach Light Palette Backgrounds */
+    --bg-main: #F4F8F9;
+    --bg-surface: #FFFFFF;
+    --bg-surface-elevated: #F9FBFC;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --bg-card-border: rgba(14, 165, 233, 0.16);
+    --bg-card-hover: #FFFFFF;
+
+    /* Text Colors - High-contrast Deep Ocean Slate */
+    --text-primary: #0F2F3C;
+    --text-secondary: #486574;
+    --text-muted: #7895A3;
+
+    /* Beach Accent: Caribbean Cyan & Seafoam Teal */
+    --color-primary: #0284C7;
+    --color-primary-hover: #0369A1;
+    --color-primary-light: rgba(2, 132, 199, 0.1);
+    --color-primary-gradient: linear-gradient(135deg, #0284C7 0%, #0D9488 100%);
+
+    /* Palm Green (Income / Health) */
+    --color-success: #059669;
+    --color-success-bg: rgba(5, 150, 105, 0.1);
+    --color-success-border: rgba(5, 150, 105, 0.25);
+
+    /* Warm Sunlight Sand (Budget / Caution) */
+    --color-warning: #D97706;
+    --color-warning-bg: rgba(217, 119, 6, 0.12);
+    --color-warning-border: rgba(217, 119, 6, 0.28);
+
+    /* Sunset Coral (Expense / Warning / Exceeded) */
+    --color-danger: #E11D48;
+    --color-danger-bg: rgba(225, 29, 72, 0.1);
+    --color-danger-border: rgba(225, 29, 72, 0.28);
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Rounded Corners */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+
+    /* Beach Card Effects & Layered Shadows */
+    --shadow-subtle: 0 4px 16px -2px rgba(12, 74, 96, 0.06), 0 2px 6px -1px rgba(12, 74, 96, 0.03);
+    --shadow-card: 0 10px 25px -4px rgba(12, 74, 96, 0.08), 0 4px 10px -2px rgba(12, 74, 96, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    --shadow-card-hover: 0 20px 32px -6px rgba(14, 116, 144, 0.16), 0 8px 16px -4px rgba(14, 116, 144, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+    --shadow-glow-teal: 0 8px 24px rgba(13, 148, 136, 0.25);
+    --shadow-glow-coral: 0 8px 24px rgba(225, 29, 72, 0.22);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    /* Soft beach ambiance: morning sea mist, warm sun sand, lagoon cyan */
+    background-image: 
+        radial-gradient(circle at 10% 10%, rgba(2, 132, 199, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 15%, rgba(254, 215, 170, 0.35) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 90%, rgba(14, 165, 233, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 20% 90%, rgba(253, 230, 138, 0.25) 0%, transparent 40%);
+    background-attachment: fixed;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Container */
+.app-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.75rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    box-shadow: var(--shadow-glow-teal);
+    transition: transform 0.3s ease;
+}
+
+.logo-icon:hover {
+    transform: rotate(6deg) scale(1.05);
+}
+
+.app-title {
+    font-family: var(--font-heading);
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #0F2F3C 20%, #0284C7 60%, #0D9488 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: var(--color-primary-gradient);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
+    filter: brightness(1.05);
+}
+
+.btn-secondary {
+    background: #FFFFFF;
+    color: var(--text-primary);
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    box-shadow: var(--shadow-subtle);
+}
+
+.btn-secondary:hover {
+    background: #F0F9FF;
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(14, 165, 233, 0.15);
+}
+
+.btn-danger-outline {
+    background: #FFFFFF;
+    color: var(--color-danger);
+    border: 1px solid var(--color-danger-border);
+    box-shadow: var(--shadow-subtle);
+}
+
+.btn-danger-outline:hover {
+    background: var(--color-danger-bg);
+    transform: translateY(-2px);
+    border-color: var(--color-danger);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Status Banner */
+.status-banner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.35rem 1.75rem;
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+
+.status-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.status-success {
+    background: linear-gradient(135deg, rgba(236, 253, 245, 0.95), rgba(204, 251, 241, 0.85));
+    border-color: rgba(5, 150, 105, 0.25);
+}
+.status-success::before {
+    background: linear-gradient(90deg, #10B981, #0D9488);
+}
+
+.status-warning {
+    background: linear-gradient(135deg, rgba(254, 243, 199, 0.95), rgba(253, 230, 138, 0.8));
+    border-color: rgba(217, 119, 6, 0.3);
+}
+.status-warning::before {
+    background: linear-gradient(90deg, #F59E0B, #EA580C);
+}
+
+.status-danger {
+    background: linear-gradient(135deg, rgba(255, 241, 242, 0.95), rgba(255, 228, 230, 0.85));
+    border-color: rgba(225, 29, 72, 0.3);
+    animation: danger-pulse 2.5s infinite;
+}
+.status-danger::before {
+    background: linear-gradient(90deg, #F43F5E, #E11D48);
+}
+
+@keyframes danger-pulse {
+    0%, 100% { box-shadow: 0 4px 16px rgba(225, 29, 72, 0.12); }
+    50% { box-shadow: 0 8px 26px rgba(225, 29, 72, 0.24); }
+}
+
+.status-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.status-success .status-icon {
+    background: #FFFFFF;
+    color: var(--color-success);
+    border: 1px solid var(--color-success-border);
+}
+
+.status-warning .status-icon {
+    background: #FFFFFF;
+    color: var(--color-warning);
+    border: 1px solid var(--color-warning-border);
+}
+
+.status-danger .status-icon {
+    background: #FFFFFF;
+    color: var(--color-danger);
+    border: 1px solid var(--color-danger-border);
+}
+
+.status-content {
+    flex: 1;
+}
+
+.status-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 0.15rem;
+}
+
+.status-message {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.status-meter-wrapper {
+    min-width: 250px;
+}
+
+.status-meter-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 0.45rem;
+}
+
+.status-progress-track {
+    width: 100%;
+    height: 10px;
+    background: rgba(14, 165, 233, 0.12);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.status-progress-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+}
+
+/* ====================================================
+ * CARD EFFECT: Elevated Coastal Floating Cards
+ * ==================================================== */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.35rem;
+}
+
+.metric-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-lg);
+    padding: 1.45rem 1.6rem;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card Accent Top Glow Bar */
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    opacity: 0.85;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.income-card::before {
+    background: linear-gradient(90deg, #10B981, #0D9488);
+}
+
+.budget-card::before {
+    background: linear-gradient(90deg, #0284C7, #06B6D4);
+}
+
+.expense-card::before {
+    background: linear-gradient(90deg, #F97316, #FB7185);
+}
+
+.balance-card::before {
+    background: linear-gradient(90deg, #0D9488, #0284C7);
+}
+
+/* Card Hover 3D Lift Effect */
+.metric-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(2, 132, 199, 0.3);
+}
+
+.metric-card:hover::before {
+    height: 5px;
+    opacity: 1;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.metric-label {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.metric-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+}
+
+.metric-badge.green {
+    background: rgba(5, 150, 105, 0.12);
+    color: #059669;
+    border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.metric-badge.blue {
+    background: rgba(2, 132, 199, 0.12);
+    color: #0284C7;
+    border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.metric-badge.purple {
+    background: rgba(249, 115, 22, 0.12);
+    color: #EA580C;
+    border: 1px solid rgba(249, 115, 22, 0.25);
+}
+
+.metric-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.45rem;
+    color: var(--text-primary);
+}
+
+.metric-footer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* ====================================================
+ * Main Layout & Content Cards
+ * ==================================================== */
+.main-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.layout-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.layout-right {
+    height: 100%;
+}
+
+.content-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card hover effect for content cards */
+.content-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(14, 165, 233, 0.28);
+}
+
+.content-card.fill-height {
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.35rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.12);
+}
+
+.card-header.flex-between {
+    justify-content: space-between;
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--text-primary);
+}
+
+.card-title svg {
+    color: var(--color-primary);
+}
+
+/* Form Controls */
+.form-group {
+    margin-bottom: 1.15rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 0.85rem;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 0.45rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.72rem 1rem;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(14, 165, 233, 0.22);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    transition: all 0.25s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.form-control:focus {
+    outline: none;
+    background: #FFFFFF;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.input-prefix-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-prefix {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+    pointer-events: none;
+}
+
+.form-control.with-prefix {
+    padding-left: 2.1rem;
+}
+
+.form-hint {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+}
+
+/* Category Bars */
+.category-bars-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+}
+
+.cat-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.cat-bar-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.cat-bar-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+}
+
+.cat-bar-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(14, 165, 233, 0.1);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.cat-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Category Color Badges - Beach Tropical Tones */
+.cat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.cat-food { 
+    background: rgba(249, 115, 22, 0.12); 
+    color: #C2410C; 
+    border-color: rgba(249, 115, 22, 0.25); 
+}
+.cat-travel { 
+    background: rgba(2, 132, 199, 0.12); 
+    color: #0369A1; 
+    border-color: rgba(2, 132, 199, 0.25); 
+}
+.cat-education { 
+    background: rgba(13, 148, 136, 0.12); 
+    color: #0F766E; 
+    border-color: rgba(13, 148, 136, 0.25); 
+}
+.cat-shopping { 
+    background: rgba(236, 72, 153, 0.12); 
+    color: #BE185D; 
+    border-color: rgba(236, 72, 153, 0.25); 
+}
+.cat-entertainment { 
+    background: rgba(124, 58, 237, 0.12); 
+    color: #6D28D9; 
+    border-color: rgba(124, 58, 237, 0.25); 
+}
+.cat-bills { 
+    background: rgba(202, 138, 4, 0.14); 
+    color: #854D0E; 
+    border-color: rgba(202, 138, 4, 0.3); 
+}
+.cat-other { 
+    background: rgba(100, 116, 139, 0.12); 
+    color: #334155; 
+    border-color: rgba(100, 116, 139, 0.25); 
+}
+
+/* Filter & Table */
+.filter-select {
+    padding: 0.5rem 0.95rem;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(14, 165, 233, 0.22);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.2s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.table-responsive {
+    flex: 1;
+    overflow-x: auto;
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.4rem;
+    font-size: 0.88rem;
+}
+
+.expense-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    border-bottom: 2px solid rgba(14, 165, 233, 0.15);
+}
+
+.expense-table td {
+    padding: 0.95rem 1rem;
+    color: var(--text-primary);
+    vertical-align: middle;
+    background: #FFFFFF;
+    border-top: 1px solid rgba(14, 165, 233, 0.08);
+    border-bottom: 1px solid rgba(14, 165, 233, 0.08);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.expense-table td:first-child {
+    border-left: 1px solid rgba(14, 165, 233, 0.08);
+    border-top-left-radius: var(--radius-sm);
+    border-bottom-left-radius: var(--radius-sm);
+}
+
+.expense-table td:last-child {
+    border-right: 1px solid rgba(14, 165, 233, 0.08);
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+}
+
+.expense-table tr:hover td {
+    background: #F0F9FF;
+    border-color: rgba(14, 165, 233, 0.25);
+}
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+.expense-amount-cell {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: #EA580C; /* Sunset Coral */
+}
+
+.btn-delete-row {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.btn-delete-row:hover {
+    color: var(--color-danger);
+    background: var(--color-danger-bg);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 2.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 47, 60, 0.45);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1.5rem;
+}
+
+.modal-dialog {
+    background: #FFFFFF;
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 25px 50px -12px rgba(12, 74, 96, 0.25);
+    animation: modal-appear 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+@keyframes modal-appear {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.15);
+    background: linear-gradient(135deg, #F0F9FF, #FFFFFF);
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 1.5rem;
+    background: #FFFFFF;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid rgba(14, 165, 233, 0.15);
+    background: #F8FAFC;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 2000;
+}
+
+.toast {
+    background: #FFFFFF;
+    border: 1px solid rgba(14, 165, 233, 0.25);
+    color: var(--text-primary);
+    padding: 0.9rem 1.35rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 12px 30px rgba(12, 74, 96, 0.15);
+    font-size: 0.88rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    animation: toast-in 0.3s ease;
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(14, 165, 233, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+    .status-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .status-meter-wrapper {
+        width: 100%;
+    }
+    .app-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    .header-actions {
+        width: 100%;
+    }
+    .header-actions .btn {
+        flex: 1;
+    }
+}
